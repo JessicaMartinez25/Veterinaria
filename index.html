@@ -1,0 +1,128 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria Belka</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("service-worker.js");
+        }
+    </script>
+
+
+</head>
+<body>
+    <!-- Pantalla de carga -->
+    <div id="loadingScreen">
+        <div class="spinner"></div>
+    </div>
+    
+
+    <header>
+        <div class="logo-container">
+            <img src="icon.png" alt="Logo Veterinaria Belka" class="logo">
+            <h1>VETERINARIA BELKA</h1>
+        </div>
+    </header>
+
+    <main>
+        <section id="dashboard">
+            <h2>Opciones</h2>
+            <br>
+            <div class="card" id="patients">
+                <h3>Registrar Paciente</h3>
+                <button onclick="toggleForm('patientsForm')">Registrar Paciente</button>
+                <div class="form-container" id="patientsForm" style="display: none;">
+                    <form id="patientsFormContent" method="POST" action="savePatient.php">
+                        <label for="patientName">Nombre del Paciente:</label>
+                        <input type="text" id="patientName" name="patientName" required><br>
+                        
+                        <label for="patientOwner">Propietario:</label>
+                        <input type="text" id="patientOwner" name="patientOwner" required><br>
+                        
+                        <label for="patientAge">Edad:</label>
+                        <input type="number" id="patientAge" name="patientAge" required><br>
+                        
+                        <label for="patientBirthdate">Fecha de Nacimiento:</label>
+                        <input type="date" id="patientBirthdate" name="patientBirthdate" required><br>
+                        
+                        <label for="patientBreed">Raza:</label>
+                        <input type="text" id="patientBreed" name="patientBreed" required><br>
+                        
+                        <button type="submit">Guardar</button>
+                        
+                    </form>
+
+                    <div id="patientsList">
+                        <!-- Los datos de los pacientes se cargarán aquí -->
+                    </div>
+                    
+                </div>
+            </div>
+            <br>
+            <div class="card" id="appointments">
+                <h3>Registrar Cita</h3>
+                <button onclick="toggleForm('appointmentsForm')">Registrar Cita</button>
+                <div class="form-container" id="appointmentsForm" style="display: none;">
+                    <form id="appointmentsFormContent" method="POST" action="save_appoinment.php">
+                        <label for="appointmentDate">Fecha:</label>
+                        <input type="date" id="appointmentDate" name="appointmentDate" required><br>
+                        <label for="appointmentDay">Día:</label>
+                        <input type="text" id="appointmentDay" name="appointmentDay" required><br>
+                        <label for="appointmentHour">Hora:</label>
+                        <input type="time" id="appointmentHour" name="appointmentHour" required><br>
+                        <label for="appointmentAssignedBy">Nombre del que asigna:</label>
+                        <input type="text" id="appointmentAssignedBy" name="appointmentAssignedBy" required><br>
+                        <button type="submit">Guardar</button>
+                    </form>
+                    
+                </div>
+            </div>
+            <br>
+            <div class="card" id="treatments">
+                <h3>Registrar Tratamiento</h3>
+                <button onclick="toggleForm('treatmentsForm')">Registrar Tratamiento</button>
+                <div class="form-container" id="treatmentsForm" style="display: none;">
+                    <form id="treatmentsFormContent" method="POST" action="save_treatment.php">
+                        <label for="treatmentDisease">Enfermedad:</label>
+                        <input type="text" id="treatmentDisease" name="treatmentDisease" required><br>
+                        <label for="treatmentMedicines">Medicamentos:</label>
+                        <input type="text" id="treatmentMedicines" name="treatmentMedicines" required><br>
+                        <label for="treatmentDate">Fecha:</label>
+                        <input type="date" id="treatmentDate" name="treatmentDate" required><br>
+                        <label for="treatmentPatient">Paciente:</label>
+                        <input type="text" id="treatmentPatient" name="treatmentPatient" required><br>
+                        <button type="submit">Guardar</button>
+                    </form>
+                    
+                </div>
+            </div>
+            <br>
+            <div class="card" id="owners">
+                <h3>Registrar Propietario</h3>
+                <button onclick="toggleForm('ownersForm')">Registrar Propietario</button>
+                <div class="form-container" id="ownersForm" style="display: none;">
+                    <form id="ownersFormContent" method="POST" action="save_owner.php">
+                        <label for="ownerFullName">Nombre Completo:</label>
+                        <input type="text" id="ownerFullName" name="ownerFullName" required><br>
+                        <label for="ownerAddress">Domicilio:</label>
+                        <input type="text" id="ownerAddress" name="ownerAddress" required><br>
+                        <label for="ownerPhone">Número Teléfono:</label>
+                        <input type="tel" id="ownerPhone" name="ownerPhone" required><br>
+                        <label for="ownerAge">Edad:</label>
+                        <input type="number" id="ownerAge" name="ownerAge" required><br>
+                        <button type="submit">Guardar</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </section>
+        <div id="popupContainer"></div>
+    </main>
+
+    <script src="js\app.js"></script>
+</body>
+</html>
